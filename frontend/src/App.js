@@ -7,6 +7,7 @@ class App extends Component {
     this.state = {
       endpoint: ''
     };
+    this.webSocket = null;
   }
   
   restRequest = (event) => {
@@ -18,6 +19,10 @@ class App extends Component {
 
   changeEndpoint = (event) => {
     this.setState({endpoint: event.target.value})
+  }
+
+  createWebSocket = () => {
+    this.webSocket = new WebSocket('ws://127.0.0.1:1337');
   }
 
   render() {
@@ -36,6 +41,12 @@ class App extends Component {
           <RestButton onClick={this.restRequest} id="PATCH">PATCH</RestButton>
           <RestButton onClick={this.restRequest} id="DELETE">DELETE</RestButton>
         </RowContainer>
+
+        <RowContainer>
+          <Label>Web-socket stuff:</Label>
+          <RestButton onClick={this.createWebSocket}>Create</RestButton>
+        </RowContainer>
+
       </Wrapper>
     );
   }

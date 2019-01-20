@@ -1,6 +1,7 @@
 package com.multiojuice.RaWsSampleProject;
 
-import com.multiojuice.RaWsFramework.HTTPMethodsResolver;
+
+import com.multiojuice.RaWsFramework.Resolvers.HTTPMethodsResolver;
 
 public class UserHTTPMethodsResolver extends HTTPMethodsResolver {
     @Override
