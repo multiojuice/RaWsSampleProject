@@ -10,12 +10,9 @@ public class App {
     public static void main( String[] args ) {
         RaWsApp app = new RaWsApp();
         HashMap<String, Resolver> endpoints = app.getEndpoints();
-        HTTPMethodsResolver usersMethodsResolver = new HTTPMethodsResolver();
+        UserHTTPMethodsResolver userHTTPMethodsResolver = new UserHTTPMethodsResolver();
 
-        UserGetResolver userGetResolver = new UserGetResolver();
-        usersMethodsResolver.setGetResolver(userGetResolver);
-
-        endpoints.put("/users", usersMethodsResolver);
+        endpoints.put("/users", userHTTPMethodsResolver);
         app.start();
         System.out.println("past run");
     }
