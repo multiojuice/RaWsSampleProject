@@ -9,10 +9,12 @@ public class App {
     public static void main( String[] args ) {
         HashMap<String, Resolver> HTTPEndpoints = new HashMap<>();
         UserHTTPMethodsResolver userHTTPMethodsResolver = new UserHTTPMethodsResolver();
-
         HTTPEndpoints.put("/users", userHTTPMethodsResolver);
 
-        RaWsApp app = new RaWsApp(HTTPEndpoints);
+        HashMap<String, Resolver> webSocketProtocols = new HashMap<>();
+
+        RaWsApp raWsApp = new RaWsApp(HTTPEndpoints, webSocketProtocols);
+        Thread app = new Thread(raWsApp);
         app.start();
         System.out.println("past run");
     }

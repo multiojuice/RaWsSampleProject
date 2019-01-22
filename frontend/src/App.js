@@ -9,7 +9,7 @@ class App extends Component {
     };
     this.webSocket = null;
   }
-  
+
   restRequest = (event) => {
     const restMethod = event.target.id;
     fetch(`http://127.0.0.1:8080/${this.state.endpoint}`, {method: restMethod})
@@ -22,7 +22,7 @@ class App extends Component {
   }
 
   createWebSocket = () => {
-    this.webSocket = new WebSocket('ws://127.0.0.1:1337');
+    this.webSocket = new WebSocket('ws://127.0.0.1:1337', 'stream');
   }
 
   render() {
