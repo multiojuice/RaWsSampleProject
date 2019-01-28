@@ -3,9 +3,8 @@ package com.multiojuice.RaWsSampleProject;
 
 import com.multiojuice.RaWsFramework.Resolvers.HTTPMethodsResolver;
 
-import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.net.Socket;
+import java.util.Date;
 
 public class UserHTTPMethodsResolver extends HTTPMethodsResolver {
     @Override
@@ -15,16 +14,14 @@ public class UserHTTPMethodsResolver extends HTTPMethodsResolver {
 
     @Override
     public void getResolve() {
-        Socket socket = this.getSocket();
-        try {
-            OutputStream theOutput = socket.getOutputStream();
-            // no auto-flushing
-            PrintWriter pw = new PrintWriter(theOutput, false);
-            // native line endings are uncertain so add them manually
-            pw.print("HTTP/1.0 200 OK\r\n");
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        PrintWriter out = this.getPrintWriter();
+
+        out.println("HTTP/1.1 200 OK");
+        out.println("Server: RaWs");
+        out.println("Date: " + new Date());
+        out.println(); // blank line between headers and content, very important !
+        out.flush(); // flush character output stream buffer
+
         System.out.println("Got a get message for /users");
     }
 }
